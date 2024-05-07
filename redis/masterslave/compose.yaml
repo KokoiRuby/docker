@@ -2,76 +2,76 @@ services:
   master:
     container_name: master
     image: redis:alpine
-    command: ["redis-server", "/etc/redis/redis.conf"]
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     networks:
       redis:
         ipv4_address: 192.168.10.10
     ports:
       - "16380:16380"
     volumes:
-      - ./config/master:/etc/redis
+      - ./config/master:/usr/local/etc/redis
     
   slave1:
     container_name: slave1
     image: redis:alpine
-    command: ["redis-server", "/etc/redis/redis.conf"]
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     networks:
       redis:
         ipv4_address: 192.168.10.11
     ports:
       - "16381:16381"
     volumes:
-      - ./config/slave1:/etc/redis
+      - ./config/slave1:/usr/local/etc/redis
       
   slave2:
     container_name: slave2
     image: redis:alpine
-    command: ["redis-server", "/etc/redis/redis.conf"]
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     networks:
       redis:
         ipv4_address: 192.168.10.12
     ports:
       - "16382:16382"
     volumes:
-      - ./config/slave2:/etc/redis
+      - ./config/slave2:/usr/local/etc/redis
 
   sentinel1:
     container_name: sentinel1
     image: redis:alpine
-    command: ["redis-server", "/etc/redis/redis.conf", "--sentinel"]
+    command: ["redis-sentinel", "/usr/local/etc/redis/redis.conf"]
     networks:
       redis:
         ipv4_address: 192.168.10.20
     ports:
       - "26380:26380"
     volumes:
-      - ./config/sentinel1:/etc/redis
+      - ./config/sentinel1:/usr/local/etc/redis
       - ./tmp:/tmp
     
   sentinel2:
     container_name: sentinel2
     image: redis:alpine
-    command: ["redis-server", "/etc/redis/redis.conf", "--sentinel"]
+    command: ["redis-sentinel", "/usr/local/etc/redis/redis.conf"]
     networks:
       redis:
         ipv4_address: 192.168.10.21
     ports:
       - "26381:26381"
     volumes:
-      - ./config/sentinel2:/etc/redis/
+      - ./config/sentinel2:/usr/local/etc/redis
       - ./tmp:/tmp
 
   sentinel3:
     container_name: sentinel3
     image: redis:alpine
-    command: ["redis-server", "/etc/redis/redis.conf", "--sentinel"]
+    command: ["redis-sentinel", "/usr/local/etc/redis/redis.conf"]
     networks:
       redis:
         ipv4_address: 192.168.10.22
     ports:
       - "26382:26382"
     volumes:
-      - ./config/sentinel3:/etc/redis/
+      - ./config/sentinel3:/usr/local/etc/redis
       - ./tmp:/tmp
 
 networks:

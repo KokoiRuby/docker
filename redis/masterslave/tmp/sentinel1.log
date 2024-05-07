@@ -1,48 +1,10 @@
-1:X 07 May 2024 14:03:55.616 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
-1:X 07 May 2024 14:03:55.617 * Redis version=7.2.4, bits=64, commit=00000000, modified=0, pid=1, just started
-1:X 07 May 2024 14:03:55.618 * Configuration loaded
-1:X 07 May 2024 14:03:55.620 * monotonic clock: POSIX clock_gettime
-1:X 07 May 2024 14:03:55.621 * Running mode=sentinel, port=26380.
-1:X 07 May 2024 14:03:55.625 # Could not chmod config file (Operation not permitted)
-1:X 07 May 2024 14:03:55.627 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Invalid argument
-1:X 07 May 2024 14:03:55.628 * Sentinel ID is 24b7b2d7dccff988eabf70053d416384606cc116
-1:X 07 May 2024 14:03:55.628 # +monitor master master 192.168.10.10 16380 quorum 2
-1:X 07 May 2024 14:03:56.705 * +slave slave 192.168.10.11:16381 192.168.10.11 16381 @ master 192.168.10.10 16380
-1:X 07 May 2024 14:03:56.708 # Could not chmod config file (Operation not permitted)
-1:X 07 May 2024 14:03:56.710 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Invalid argument
-1:X 07 May 2024 14:03:56.711 * +slave slave 192.168.10.12:16382 192.168.10.12 16382 @ master 192.168.10.10 16380
-1:X 07 May 2024 14:03:56.714 # Could not chmod config file (Operation not permitted)
-1:X 07 May 2024 14:03:56.716 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Invalid argument
-1:X 07 May 2024 14:03:57.977 * +sentinel sentinel 280dd06841a40c48600dab85ff99f6366ed8bf1b 192.168.10.21 26381 @ master 192.168.10.10 16380
-1:X 07 May 2024 14:03:57.995 # Could not chmod config file (Operation not permitted)
-1:X 07 May 2024 14:03:57.998 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Invalid argument
-1:X 07 May 2024 14:03:58.160 * +sentinel sentinel 402f390181dcda7b2f60e7c7b6cec5638962efb1 192.168.10.22 26382 @ master 192.168.10.10 16380
-1:X 07 May 2024 14:03:58.168 # Could not chmod config file (Operation not permitted)
-1:X 07 May 2024 14:03:58.171 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Invalid argument
-1:signal-handler (1715091108) Received SIGTERM scheduling shutdown...
-1:X 07 May 2024 14:11:48.732 * User requested shutdown...
-1:X 07 May 2024 14:11:48.732 # Sentinel is now ready to exit, bye bye...
-1:X 07 May 2024 14:16:06.480 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
-1:X 07 May 2024 14:16:06.481 * Redis version=7.2.4, bits=64, commit=00000000, modified=0, pid=1, just started
-1:X 07 May 2024 14:16:06.482 * Configuration loaded
-1:X 07 May 2024 14:16:06.483 * monotonic clock: POSIX clock_gettime
-1:X 07 May 2024 14:16:06.483 * Running mode=sentinel, port=26380.
-1:X 07 May 2024 14:16:06.487 # Could not chmod config file (Operation not permitted)
-1:X 07 May 2024 14:16:06.488 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Invalid argument
-1:X 07 May 2024 14:16:06.489 * Sentinel ID is f7e88d64c3b0e49126c0407e5f5f54593c01bee3
-1:X 07 May 2024 14:16:06.489 # +monitor master master 192.168.10.10 16380 quorum 2
-1:X 07 May 2024 14:16:07.498 * +slave slave 192.168.10.12:16382 192.168.10.12 16382 @ master 192.168.10.10 16380
-1:X 07 May 2024 14:16:07.503 # Could not chmod config file (Operation not permitted)
-1:X 07 May 2024 14:16:07.505 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Invalid argument
-1:X 07 May 2024 14:16:08.667 * +sentinel sentinel 6bd74802b321b9e4d80c480a223e02c1d8bb8797 192.168.10.22 26382 @ master 192.168.10.10 16380
-1:X 07 May 2024 14:16:08.677 # Could not chmod config file (Operation not permitted)
-1:X 07 May 2024 14:16:08.679 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Invalid argument
-1:X 07 May 2024 14:16:08.863 * +sentinel sentinel d256c534e165d3199b1f052a7ff846529e3f1d30 192.168.10.21 26381 @ master 192.168.10.10 16380
-1:X 07 May 2024 14:16:08.875 # Could not chmod config file (Operation not permitted)
-1:X 07 May 2024 14:16:08.878 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Invalid argument
-1:X 07 May 2024 14:16:17.535 * +slave slave 192.168.10.11:16381 192.168.10.11 16381 @ master 192.168.10.10 16380
-1:X 07 May 2024 14:16:17.554 # Could not chmod config file (Operation not permitted)
-1:X 07 May 2024 14:16:17.557 # WARNING: Sentinel was not able to save the new configuration on disk!!!: Invalid argument
-1:signal-handler (1715091396) Received SIGTERM scheduling shutdown...
-1:X 07 May 2024 14:16:36.819 * User requested shutdown...
-1:X 07 May 2024 14:16:36.819 # Sentinel is now ready to exit, bye bye...
+1:X 07 May 2024 14:48:15.809 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:X 07 May 2024 14:48:15.810 * Redis version=7.2.4, bits=64, commit=00000000, modified=0, pid=1, just started
+1:X 07 May 2024 14:48:15.811 * Configuration loaded
+1:X 07 May 2024 14:48:15.813 * monotonic clock: POSIX clock_gettime
+1:X 07 May 2024 14:48:15.814 * Running mode=sentinel, port=26380.
+1:X 07 May 2024 14:48:15.815 * Sentinel ID is 6bc37b81bbaab4092964d9770355ac1a19a134d9
+1:X 07 May 2024 14:48:15.816 # +monitor master master 192.168.10.10 16380 quorum 2
+1:signal-handler (1715093313) Received SIGTERM scheduling shutdown...
+1:X 07 May 2024 14:48:33.858 * User requested shutdown...
+1:X 07 May 2024 14:48:33.859 # Sentinel is now ready to exit, bye bye...
