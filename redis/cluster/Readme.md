@@ -28,7 +28,7 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
 2. Cluster Meet
 
    ```bash
-   while IFS="" read -r ip
+   $ while IFS="" read -r ip
    do
    	docker exec cluster-master0 redis-cli \
    	-p 6379 \
@@ -39,7 +39,7 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
    
    # Verify
    # cluster_known_nodes shall be 6
-   docker exec cluster-master0 redis-cli \
+   $ docker exec cluster-master0 redis-cli \
    -p 6379 \
    --user cluster --pass clusterpwd \
    cluster info
@@ -48,7 +48,7 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
 3. Add Slots
 
    ```bash
-   paste masterlist slotlist | while read -r master slot
+   $ paste masterlist slotlist | while read -r master slot
    do
    	docker exec $master redis-cli \
    	-p 6379 \
@@ -59,7 +59,7 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
    
    # Verify
    # cluster_state shall be ok
-   docker exec cluster-master0 redis-cli \
+   $ docker exec cluster-master0 redis-cli \
    -p 6379 \
    --user cluster --pass clusterpwd \
    cluster info
@@ -68,7 +68,7 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
 4. Cluster Replicate
 
    ```bash
-   while IFS="" read -r ip
+   $ while IFS="" read -r ip
    do
    	docker exec cluster-master0 redis-cli \
    	-p 6379 \
@@ -78,7 +78,7 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
    done < masteriplist
    
    # Cluster Replicate
-   paste slavelist masteridlist | while read -r slave masterid
+   $ paste slavelist masteridlist | while read -r slave masterid
    do
    	docker exec $slave redis-cli \
    	-p 6379 \
@@ -88,7 +88,7 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
    done
    
    # Verify
-   docker exec cluster-master0 redis-cli \
+   $ docker exec cluster-master0 redis-cli \
    -p 6379 \
    --user cluster --pass clusterpwd \
    cluster nodes
@@ -99,5 +99,5 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
 6. (Clean Up)
 
    ```bash
-   rm masteridlist && docker compose stop && rm -rf ./tmp/*
+   $ rm masteridlist && docker compose stop && rm -rf ./tmp/*
    ```
