@@ -1,0 +1,85 @@
+services:
+  cluster-master0:
+    container_name: cluster-master0
+    image: redis:alpine
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    networks:
+      redis:
+        ipv4_address: 192.168.20.10
+    ports:
+      - "16380:6379"
+    volumes:
+      - ./config/master0:/usr/local/etc/redis
+      - ./tmp:/tmp
+  
+  cluster-master1:
+    container_name: cluster-master1
+    image: redis:alpine
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    networks:
+      redis:
+        ipv4_address: 192.168.20.11
+    ports:
+      - "16381:6379"
+    volumes:
+      - ./config/master1:/usr/local/etc/redis
+      - ./tmp:/tmp
+
+  cluster-master2:
+    container_name: cluster-master2
+    image: redis:alpine
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    networks:
+      redis:
+        ipv4_address: 192.168.20.12
+    ports:
+      - "16382:6379"
+    volumes:
+      - ./config/master2:/usr/local/etc/redis
+      - ./tmp:/tmp
+    
+  cluster-slave0:
+    container_name: cluster-slave0
+    image: redis:alpine
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    networks:
+      redis:
+        ipv4_address: 192.168.20.20
+    ports:
+      - "26380:6379"
+    volumes:
+      - ./config/slave0:/usr/local/etc/redis
+      - ./tmp:/tmp
+      
+  cluster-slave1:
+    container_name: cluster-slave1
+    image: redis:alpine
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    networks:
+      redis:
+        ipv4_address: 192.168.20.21
+    ports:
+      - "26381:6379"
+    volumes:
+      - ./config/slave1:/usr/local/etc/redis
+      - ./tmp:/tmp
+    
+  cluster-slave2:
+    container_name: cluster-slave2
+    image: redis:alpine
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    networks:
+      redis:
+        ipv4_address: 192.168.20.22
+    ports:
+      - "26382:6379"
+    volumes:
+      - ./config/slave2:/usr/local/etc/redis
+      - ./tmp:/tmp
+
+networks:
+  redis:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.20.0/24
