@@ -1,6 +1,6 @@
 A quickstart of deploying a master/slave redis with sentinel using [Docker Compose](https://docs.docker.com/compose/) :whale2:
 
-## IP Plane
+## IP Plan
 
 - Sentinel{0..2} → Master{0..2} ← Slave{1..2}
 - Credentials of redis-cli (see more in redis.conf)
