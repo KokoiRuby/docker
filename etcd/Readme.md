@@ -134,5 +134,13 @@ A quickstart of deploying a etcd cluster using [Docker Compose](https://docs.doc
 
 4. Enjoy :smile:
 
+5. (Clean up)
+
+   ```bash
+   $ docker compose stop && docker rm -rf etcd1 etcd2 etcd3
+   ```
+
+   
+
    
 
