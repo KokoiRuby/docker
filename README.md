@@ -8,3 +8,7 @@
 ## etcd
 
 - [cluster](https://github.com/KokoiRuby/docker/tree/main/etcd)
+
+## Prometheus
+
+- [prometheus + node_exporter](https://github.com/KokoiRuby/docker/tree/main/prometheus)
