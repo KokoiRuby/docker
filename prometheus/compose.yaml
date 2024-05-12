@@ -1,0 +1,30 @@
+services:
+  prometheus:
+    image: prom/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      prometheus:
+        ipv4_address: 192.168.40.10
+    ports:
+      - 19090:9090
+    volumes:
+      - ./config:/etc/prometheus
+      - ./rule_files:/etc/prometheus/rule_files
+    depends_on:
+      - node-exporter
+
+  node-exporter:
+    image: prom/node-exporter
+    networks:
+      prometheus:
+        ipv4_address: 192.168.40.11
+    ports:
+      - 19100:9100
+
+networks:
+  prometheus:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.40.0/24
