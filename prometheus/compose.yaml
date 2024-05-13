@@ -9,8 +9,7 @@ services:
     ports:
       - 19090:9090
     volumes:
-      - ./config:/etc/prometheus
-      - ./rule_files:/etc/prometheus/rule_files
+      - ./config/prometheus:/etc/prometheus
     depends_on:
       - node-exporter
 
@@ -21,6 +20,16 @@ services:
         ipv4_address: 192.168.40.11
     ports:
       - 19100:9100
+
+  alert-manager:
+    image: prom/alertmanager
+    networks:
+      prometheus:
+        ipv4_address: 192.168.40.12
+    ports:
+      - 19093:9093
+    volumes:
+      - ./config/alertmanager:/etc/alertmanager
 
 networks:
   prometheus:
