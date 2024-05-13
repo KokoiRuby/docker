@@ -7,6 +7,7 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
 | Prometheus    | 192.168.40.10 | 9090 | 19090    |
 | Node-Exporter | 192.168.40.11 | 9100 | 19100    |
 | Alert-Manager | 192.168.40.12 | 9093 | 19093    |
+| Grafana       | 192.168.40.13 | 3000 | 13000    |
 
 ## Steps
 
@@ -23,6 +24,8 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
      - Alerts (see more in ./config/prometheus/rule_files/node-exporter.yml)
    - http://localhost:19090/metrics
    - http://localhost:19100/metrics
+   - http://localhost:13000
+     - admin/admin
    
 4. Setup SMTP (Optional, see more in ./config/alertmanager/alertmanager.yml)
 
