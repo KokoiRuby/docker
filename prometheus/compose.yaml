@@ -10,6 +10,7 @@ services:
       - 19090:9090
     volumes:
       - ./config/prometheus:/etc/prometheus
+      # - ./data/prometheus:/prometheus
     depends_on:
       - node-exporter
 
@@ -30,6 +31,22 @@ services:
       - 19093:9093
     volumes:
       - ./config/alertmanager:/etc/alertmanager
+  
+  grafana:
+    image: grafana/grafana
+    networks:
+      prometheus:
+        ipv4_address: 192.168.40.13
+    ports:
+      - 13000:3000
+    volumes:
+      # - ./data/grafana:/var/lib/grafana
+      - ./config/grafana/dashboards:/var/lib/grafana/dashboards
+      - ./config/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./config/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
 
 networks:
   prometheus:
