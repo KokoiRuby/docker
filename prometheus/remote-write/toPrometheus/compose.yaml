@@ -1,0 +1,60 @@
+services:
+  grafana:
+    image: grafana/grafana
+    networks:
+      local:
+        ipv4_address: 192.168.40.18
+    ports:
+      - 13000:3000
+    volumes:
+      # - ./data/grafana:/var/lib/grafana
+      - ./config/grafana/dashboards:/var/lib/grafana/dashboards
+      - ./config/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./config/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus_written
+
+  prometheus_written:
+    image: prom/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      local:
+        ipv4_address: 192.168.40.19
+    ports:
+      - 19090:9090
+    volumes:
+      - ./config/prometheus/written:/etc/prometheus
+      # - ./data/prometheus:/prometheus
+    depends_on:
+      - prometheus_writer
+
+  prometheus_writer:
+    image: prom/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      local:
+        ipv4_address: 192.168.40.20
+    ports:
+      - 29090:9090
+    volumes:
+      - ./config/prometheus/writer:/etc/prometheus
+      # - ./data/prometheus:/prometheus
+    depends_on:
+      - node-exporter
+
+  node-exporter:
+    image: prom/node-exporter
+    networks:
+      local:
+        ipv4_address: 192.168.40.21
+    ports:
+      - 19100:9100
+  
+networks:
+  local:
+    external: true
