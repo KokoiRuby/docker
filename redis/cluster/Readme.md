@@ -5,17 +5,17 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
 - Sentinel{0..2} → Master{0..2} ← Slave{0..2}
 - Credentials of redis-cli: `cluster/clusterpwd`, see more in redis.conf
 
-| Instance  | IP            | Port | HostPort |
-| --------- | ------------- | ---- | -------- |
-| Master0   | 192.168.20.10 | 6379 | 16380    |
-| Master1   | 192.168.20.11 | 6379 | 16381    |
-| Master2   | 192.168.20.12 | 6379 | 16382    |
-| Slave0    | 192.168.20.20 | 6379 | 26380    |
-| Slave1    | 192.168.20.21 | 6379 | 26381    |
-| Slave2    | 192.168.20.22 | 6379 | 26382    |
-| Sentinel0 | 192.168.20.30 | 6379 | 36380    |
-| Sentinel1 | 192.168.20.31 | 6379 | 36381    |
-| Sentinel2 | 192.168.20.32 | 6379 | 36382    |
+| Instance  | IP               | Port | HostPort |
+| --------- | ---------------- | ---- | -------- |
+| Master0   | 192.168.20.10/16 | 6379 | 16380    |
+| Master1   | 192.168.20.11/16 | 6379 | 16381    |
+| Master2   | 192.168.20.12/16 | 6379 | 16382    |
+| Slave0    | 192.168.20.20/16 | 6379 | 26380    |
+| Slave1    | 192.168.20.21/16 | 6379 | 26381    |
+| Slave2    | 192.168.20.22/16 | 6379 | 26382    |
+| Sentinel0 | 192.168.20.30/16 | 6379 | 36380    |
+| Sentinel1 | 192.168.20.31/16 | 6379 | 36381    |
+| Sentinel2 | 192.168.20.32/16 | 6379 | 36382    |
 
 ## Steps
 

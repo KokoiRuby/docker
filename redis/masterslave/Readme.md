@@ -8,14 +8,14 @@ A quickstart of deploying a master/slave redis with sentinel using [Docker Compo
   - slave1: `slave1/slave1pwd`
   - slave2:  `slave2/slave2pwd`
 
-| Instance  | IP            | Port | HostPort |
-| --------- | ------------- | ---- | -------- |
-| Master0   | 192.168.10.10 | 6379 | 16380    |
-| Slave1    | 192.168.10.11 | 6379 | 16381    |
-| Slave2    | 192.168.10.12 | 6379 | 16382    |
-| Sentinel0 | 192.168.10.20 | 6379 | 26380    |
-| Sentinel1 | 192.168.10.21 | 6379 | 26381    |
-| Sentinel2 | 192.168.10.22 | 6379 | 26383    |
+| Instance  | IP               | Port | HostPort |
+| --------- | ---------------- | ---- | -------- |
+| Master0   | 192.168.10.10/16 | 6379 | 16380    |
+| Slave1    | 192.168.10.11/16 | 6379 | 16381    |
+| Slave2    | 192.168.10.12/16 | 6379 | 16382    |
+| Sentinel0 | 192.168.10.20/16 | 6379 | 26380    |
+| Sentinel1 | 192.168.10.21/16 | 6379 | 26381    |
+| Sentinel2 | 192.168.10.22/16 | 6379 | 26383    |
 
 ## Steps
 

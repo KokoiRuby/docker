@@ -2,22 +2,22 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
 
 ## IP Plan
 
-| Instance      | IP            | Port | HostPort |
-| ------------- | ------------- | ---- | -------- |
-| Prometheus    | 192.168.40.10 | 9090 | 19090    |
-| Node-Exporter | 192.168.40.11 | 9100 | 19100    |
-| Alert-Manager | 192.168.40.12 | 9093 | 19093    |
-| Grafana       | 192.168.40.13 | 3000 | 13000    |
+| Instance      | IP               | Port | HostPort |
+| ------------- | ---------------- | ---- | -------- |
+| Prometheus    | 192.168.40.10/16 | 9090 | 19090    |
+| Node-Exporter | 192.168.40.11/16 | 9100 | 19100    |
+| Alert-Manager | 192.168.40.12/16 | 9093 | 19093    |
+| Grafana       | 192.168.40.13/16 | 3000 | 13000    |
 
 ## Steps
 
-2. Docker Compose Up
+1. Docker Compose Up
 
    ```bash
    $ docker compose up -d
    ```
 
-3. Verify
+2. Verify
 
    - http://localhost:19090/
      - Status → Targets (see more in ./config/prometheus/prometheus.yml)
@@ -27,7 +27,7 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
    - http://localhost:13000
      - admin/admin
    
-4. Setup SMTP (Optional, see more in ./config/alertmanager/alertmanager.yml)
+3. Setup SMTP (Optional, see more in ./config/alertmanager/alertmanager.yml)
 
    ```yaml
    # fill in
@@ -43,9 +43,9 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
        - to: '<ur_email_here>'
    ```
 
-5. Enjoy :smile:
+4. Enjoy :smile:
 
-6. (Clean up)
+5. (Clean up)
 
    ```bash
    $ docker compose stop
