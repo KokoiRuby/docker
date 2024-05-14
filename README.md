@@ -11,4 +11,13 @@
 
 ## Prometheus
 
-- [prometheus + node_exporter](https://github.com/KokoiRuby/docker/tree/main/prometheus)
+- [prometheus + node_exporter + alert_manager + grafana](https://github.com/KokoiRuby/docker/tree/main/prometheus)
+
+### Remote-Read
+
+- [fromPrometheus](https://github.com/KokoiRuby/docker/tree/main/prometheus/remote-read/fromPrometheus)
+
+### Remote-Write
+
+- [toPrometheus](https://github.com/KokoiRuby/docker/tree/main/prometheus/remote-write/toPrometheus)
+
