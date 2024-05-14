@@ -1,4 +1,4 @@
-A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporter](https://github.com/prometheus/node_exporter) using [Docker Compose](https://docs.docker.com/compose/) :whale2:
+A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporter](https://github.com/prometheus/node_exporter) + [Alert-Manager](https://prometheus.io/docs/alerting/latest/alertmanager/) + [Grafana](https://grafana.com/) using [Docker Compose](https://docs.docker.com/compose/) :whale2:
 
 ## IP Plan
 
@@ -11,13 +11,19 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
 
 ## Steps
 
-1. Docker Compose Up
+1. Create Network
+
+   ```bash
+   $ docker network create --subnet=192.168.0.0/16 local
+   ```
+
+2. Docker Compose Up
 
    ```bash
    $ docker compose up -d
    ```
 
-2. Verify
+3. Verify
 
    - http://localhost:19090/
      - Status → Targets (see more in ./config/prometheus/prometheus.yml)
@@ -26,8 +32,8 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
    - http://localhost:19100/metrics
    - http://localhost:13000
      - admin/admin
-   
-3. Setup SMTP (Optional, see more in ./config/alertmanager/alertmanager.yml)
+
+4. Setup SMTP (Optional, see more in ./config/alertmanager/alertmanager.yml)
 
    ```yaml
    # fill in
@@ -43,9 +49,9 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
        - to: '<ur_email_here>'
    ```
 
-4. Enjoy :smile:
+5. Enjoy :smile:
 
-5. (Clean up)
+6. (Clean up)
 
    ```bash
    $ docker compose stop

@@ -1,4 +1,4 @@
-A quickstart of deploying a master/slave redis with sentinel using [Docker Compose](https://docs.docker.com/compose/) :whale2:
+A quickstart of deploying a master/slave [redis](https://redis.io/) with sentinel using [Docker Compose](https://docs.docker.com/compose/) :whale2:
 
 ## IP Plan
 
@@ -19,13 +19,19 @@ A quickstart of deploying a master/slave redis with sentinel using [Docker Compo
 
 ## Steps
 
-1. Docker Compose Up
+1. Create network
+
+   ```bash
+   $ docker network create --subnet=192.168.0.0/16 local
+   ```
+
+2. Docker Compose Up
 
    ```bash
    $ docker compose up
    ```
 
-2. Verify
+3. Verify
 
    ```bash
    # info
@@ -67,9 +73,9 @@ A quickstart of deploying a master/slave redis with sentinel using [Docker Compo
    info sentinel
    ```
 
-3. Enjoy :smile:
+4. Enjoy :smile:
 
-4. (Clean up)
+5. (Clean up)
 
    ```bash
    $ docker compose stop && rm -rf ./tmp/*

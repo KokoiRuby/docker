@@ -4,7 +4,7 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     networks:
-      prometheus:
+      local:
         ipv4_address: 192.168.40.10
     ports:
       - 19090:9090
@@ -17,7 +17,7 @@ services:
   node-exporter:
     image: prom/node-exporter
     networks:
-      prometheus:
+      local:
         ipv4_address: 192.168.40.11
     ports:
       - 19100:9100
@@ -25,7 +25,7 @@ services:
   alert-manager:
     image: prom/alertmanager
     networks:
-      prometheus:
+      local:
         ipv4_address: 192.168.40.12
     ports:
       - 19093:9093
@@ -35,7 +35,7 @@ services:
   grafana:
     image: grafana/grafana
     networks:
-      prometheus:
+      local:
         ipv4_address: 192.168.40.13
     ports:
       - 13000:3000
@@ -49,8 +49,5 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
 
 networks:
-  prometheus:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 192.168.0.0/16
+  local:
+    external: true

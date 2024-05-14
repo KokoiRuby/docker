@@ -4,7 +4,7 @@ services:
     image: redis:alpine
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     networks:
-      redis:
+      local:
         ipv4_address: 192.168.20.10
     ports:
       - "16380:6379"
@@ -17,7 +17,7 @@ services:
     image: redis:alpine
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     networks:
-      redis:
+      local:
         ipv4_address: 192.168.20.11
     ports:
       - "16381:6379"
@@ -30,7 +30,7 @@ services:
     image: redis:alpine
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     networks:
-      redis:
+      local:
         ipv4_address: 192.168.20.12
     ports:
       - "16382:6379"
@@ -43,7 +43,7 @@ services:
     image: redis:alpine
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     networks:
-      redis:
+      local:
         ipv4_address: 192.168.20.20
     ports:
       - "26380:6379"
@@ -56,7 +56,7 @@ services:
     image: redis:alpine
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     networks:
-      redis:
+      local:
         ipv4_address: 192.168.20.21
     ports:
       - "26381:6379"
@@ -69,7 +69,7 @@ services:
     image: redis:alpine
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     networks:
-      redis:
+      local:
         ipv4_address: 192.168.20.22
     ports:
       - "26382:6379"
@@ -78,8 +78,5 @@ services:
       - ./tmp:/tmp
 
 networks:
-  redis:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 192.168.0.0/16
+  local:
+    external: true

@@ -1,4 +1,4 @@
-A quickstart of deploying a redis cluster using [Docker Compose](https://docs.docker.com/compose/) :whale2:
+A quickstart of deploying a [redis](https://redis.io/) cluster using [Docker Compose](https://docs.docker.com/compose/) :whale2:
 
 ## IP Plan
 
@@ -19,13 +19,19 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
 
 ## Steps
 
-1. Docker Compose Up
+1. Create network
+
+   ```bash
+   $ docker network create --subnet=192.168.0.0/16 local
+   ```
+
+2. Docker Compose Up
 
    ```bash
    $ docker compose up
    ```
 
-2. Cluster Meet
+3. Cluster Meet
 
    ```bash
    $ while IFS="" read -r ip
@@ -45,7 +51,7 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
    cluster info
    ```
 
-3. Add Slots
+4. Add Slots
 
    ```bash
    $ paste masterlist slotlist | while read -r master slot
@@ -65,7 +71,7 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
    cluster info
    ```
 
-4. Cluster Replicate
+5. Cluster Replicate
 
    ```bash
    $ while IFS="" read -r ip
@@ -94,9 +100,9 @@ A quickstart of deploying a redis cluster using [Docker Compose](https://docs.do
    cluster nodes
    ```
 
-5. Enjoy :smile:
+6. Enjoy :smile:
 
-6. (Clean Up)
+7. (Clean Up)
 
    ```bash
    $ rm masteridlist && docker compose stop && rm -rf ./tmp/*

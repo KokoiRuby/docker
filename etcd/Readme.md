@@ -1,4 +1,4 @@
-A quickstart of deploying a etcd cluster using [Docker Compose](https://docs.docker.com/compose/) :whale2:
+A quickstart of deploying a [etcd](https://etcd.io/) cluster using [Docker Compose](https://docs.docker.com/compose/) :whale2:
 
 ## IP Plan
 
@@ -78,13 +78,19 @@ A quickstart of deploying a etcd cluster using [Docker Compose](https://docs.doc
    $ mv certs/ /mnt/d/CloudNative/Docker/etcd/
    ```
 
-2. Docker Compose Up
+2. Create network
+
+   ```bash
+   $ docker network create --subnet=192.168.0.0/16 local
+   ```
+
+3. Docker Compose Up
 
    ```bash
    $ docker compose up
    ```
 
-3. Verify
+4. Verify
 
    ```bash
    $ docker exec etcd0 etcdctl \
@@ -132,9 +138,9 @@ A quickstart of deploying a etcd cluster using [Docker Compose](https://docs.doc
    get age
    ```
 
-4. Enjoy :smile:
+5. Enjoy :smile:
 
-5. (Clean up)
+6. (Clean up)
 
    ```bash
    $ docker compose stop && docker rm -rf etcd1 etcd2 etcd3

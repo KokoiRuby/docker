@@ -21,7 +21,7 @@ services:
       - ETCD_LOG_LEVEL=info
       - ETCD_ACTIVE_ENDPOINTS=https://192.168.30.11:2380,https://192.168.30.12:2380
     networks:
-      etcd:
+      local:
         ipv4_address: 192.168.30.10
     ports:
       - 12379:2379
@@ -53,7 +53,7 @@ services:
       - ETCD_LOG_LEVEL=info
       - ETCD_ACTIVE_ENDPOINTS=https://192.168.30.10:2380,https://192.168.30.12:2380
     networks:
-      etcd:
+      local:
         ipv4_address: 192.168.30.11
     ports:
       - 22379:2379
@@ -85,7 +85,7 @@ services:
       - ETCD_LOG_LEVEL=info
       - ETCD_ACTIVE_ENDPOINTS=https://192.168.30.10:2380,https://192.168.30.11:2380
     networks:
-      etcd:
+      local:
         ipv4_address: 192.168.30.12
     ports:
       - 32379:2379
@@ -96,8 +96,5 @@ services:
       - ./certs/etcd2:/opt/bitnami/etcd/certs
     
 networks:
-  etcd:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 192.168.0.0/16
+  local:
+    external: true
