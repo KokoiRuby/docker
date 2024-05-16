@@ -10,19 +10,19 @@ A quickstart of deploying a [zookeeper](https://zookeeper.apache.org/) cluster u
 
 ## Steps
 
-2. Create network
+1. Create network
 
    ```bash
    $ docker network create --subnet=192.168.0.0/16 local
    ```
 
-3. Docker Compose Up
+2. Docker Compose Up
 
    ```bash
    $ docker compose up
    ```
 
-4. Verify
+3. Verify
 
    ```bash
    $ docker exec zk1 zkServer.sh \
@@ -39,9 +39,9 @@ A quickstart of deploying a [zookeeper](https://zookeeper.apache.org/) cluster u
    ls -R /
    ```
    
-5. Enjoy :smile:
+4. Enjoy :smile:
 
-6. (Clean up)
+5. (Clean up)
 
    ```bash
    $ docker compose stop
