@@ -11,6 +11,7 @@ services:
     environment:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
+      ZOO_4LW_COMMANDS_WHITELIST: "*"
     volumes:
       - ./datalog/zk1:/datalog
 
@@ -26,6 +27,7 @@ services:
     environment:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=0.0.0.0:2888:3888;2181 server.3=zk3:2888:3888;2181
+      ZOO_4LW_COMMANDS_WHITELIST: "*"
     volumes:
       - ./datalog/zk2:/datalog
 
@@ -41,8 +43,17 @@ services:
     environment:
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=0.0.0.0:2888:3888;2181
+      ZOO_4LW_COMMANDS_WHITELIST: "*"
     volumes:
       - ./datalog/zk3:/datalog
+  
+  busybox:
+    container_name: busybox
+    image: busybox
+    command: sh -c "while true; do sleep 1; done"
+    networks:
+      local:
+        ipv4_address: 192.168.50.14
 
 networks:
   local:
