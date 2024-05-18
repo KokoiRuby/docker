@@ -11,7 +11,7 @@
 
 ## Prometheus
 
-- [prometheus + node_exporter + alert_manager + grafana](https://github.com/KokoiRuby/docker/tree/main/prometheus)
+- [node_exporter + alert_manager + grafana](https://github.com/KokoiRuby/docker/tree/main/prometheus)
 
 ### Remote-Read
 

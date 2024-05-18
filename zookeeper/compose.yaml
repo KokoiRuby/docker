@@ -8,13 +8,11 @@ services:
         ipv4_address: 192.168.50.11
     ports:
       - 12181:2181
-      - 19010:9010
     environment:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181 server.4=zk4:2888:3888:observer;2181
       ZOO_4LW_COMMANDS_WHITELIST: "*"
-      JMXPORT: 9010
-      ZOO_CFG_EXTRA: ""
+      ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7070"
     volumes:
       - ./datalog/zk1:/datalog
 
@@ -27,12 +25,11 @@ services:
         ipv4_address: 192.168.50.12
     ports:
       - 22181:2181
-      - 29010:9010
     environment:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=0.0.0.0:2888:3888;2181 server.3=zk3:2888:3888;2181 server.4=zk4:2888:3888:observer;2181
       ZOO_4LW_COMMANDS_WHITELIST: "*"
-      JMXPORT: 9010
+      ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7070"
     volumes:
       - ./datalog/zk2:/datalog
 
@@ -45,12 +42,11 @@ services:
         ipv4_address: 192.168.50.13
     ports:
       - 32181:2181
-      - 39010:9010
     environment:
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=0.0.0.0:2888:3888;2181 server.4=zk4:2888:3888:observer;2181
       ZOO_4LW_COMMANDS_WHITELIST: "*"
-      JMXPORT: 9010
+      ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7070"
     volumes:
       - ./datalog/zk3:/datalog
 
@@ -63,12 +59,11 @@ services:
         ipv4_address: 192.168.50.14
     ports:
       - 42181:2181
-      - 49010:9010
     environment:
       ZOO_MY_ID: 4
       ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181 server.4=0.0.0.0:2888:3888:observer;2181
       ZOO_4LW_COMMANDS_WHITELIST: "*"
-      JMXPORT: 9010
+      ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7070"
     volumes:
       - ./datalog/zk4:/datalog
 

@@ -14,6 +14,8 @@ alerting:
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
   - "/etc/prometheus/rule_files/node-exporter.yml"
+  # https://github.com/KokoiRuby/docker/tree/main/zookeeper
+  - "/etc/prometheus/rule_files/zk.yml"
   # - "first_rules.yml"
   # - "second_rules.yml"
 
@@ -32,3 +34,8 @@ scrape_configs:
   - job_name: "node_exporter"
     static_configs:
       - targets: ["192.168.40.11:9100"]
+
+  # https://github.com/KokoiRuby/docker/tree/main/zookeeper
+  - job_name: "zookeeper"
+    static_configs:
+      - targets: ["192.168.50.11:7070","192.168.50.12:7070","192.168.50.13:7070","192.168.50.14:7070"]
