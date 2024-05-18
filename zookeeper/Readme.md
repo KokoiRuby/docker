@@ -7,6 +7,7 @@ A quickstart of deploying a [zookeeper](https://zookeeper.apache.org/) cluster u
 | zk1      | 192.168.50.11/16 | 2181 | 12181    |
 | zk2      | 192.168.50.12/16 | 2181 | 22181    |
 | zk3      | 192.168.50.13/16 | 2181 | 32181    |
+| zk4      | 192.168.50.14/16 | 2181 | 42181    |
 
 ## Steps
 
@@ -39,9 +40,11 @@ A quickstart of deploying a [zookeeper](https://zookeeper.apache.org/) cluster u
    ls -R /
    ```
    
-4. Enjoy :smile:
+4. (Optinoal) Uncomment busybox section in ./compose.yaml for telnet 4LW
 
-5. (Clean up)
+5. Enjoy :smile:
+
+6. (Clean up)
 
    ```bash
    $ docker compose stop
