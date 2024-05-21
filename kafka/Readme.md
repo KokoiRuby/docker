@@ -36,7 +36,6 @@ A quickstart of deploying a [kafka](https://kafka.apache.org/) cluster in [Kraft
 6. (Clean up)
 
    ```bash
-   $ rm -rf data/kf*/*
+   $ docker compose stop && rm -rf data/kf*/* && rm -rf data/kf*/.*
    ```
-
 
