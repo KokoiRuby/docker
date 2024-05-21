@@ -16,13 +16,19 @@ A quickstart of deploying a [kafka](https://kafka.apache.org/) cluster in [Kraft
    $ docker network create --subnet=192.168.0.0/16 local
    ```
 
-2. Docker Compose Up
+2. Create data folder
+
+   ```bash
+   $ mkdir -p ./data/kf{1..3}
+   ```
+
+3. Docker Compose Up
 
    ```bash
    $ docker compose up
    ```
 
-3. Verify
+4. Verify
 
    ```bash
    $ docker exec kf1 kafka-configs.sh \
@@ -30,7 +36,7 @@ A quickstart of deploying a [kafka](https://kafka.apache.org/) cluster in [Kraft
     --entity-type brokers \
     --describe
    ```
-   
+
 5. Enjoy :smile:
 
 6. (Clean up)
