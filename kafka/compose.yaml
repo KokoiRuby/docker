@@ -1,0 +1,70 @@
+services:
+  kf1:
+    container_name: kf1
+    hostname: kf1
+    image: bitnami/kafka
+    networks:
+      local:
+        ipv4_address: 192.168.50.21
+    ports:
+      - 19093:9093
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: yes
+      KAFKA_CFG_NODE_ID: 1
+      KAFKA_CFG_PROCESS_ROLES: controller,broker
+      KAFKA_KRAFT_CLUSTER_ID: test
+      KAFKA_CFG_LISTENERS: INTERNAL://:9092,KF://:9093,CONTROLLER://kf1:9094
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,KF:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 1@kf1:9094,2@kf2:9094,3@kf3:9094
+      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INTERNAL
+    volumes:
+      - ./data/kf1:/bitnami/kafka/data
+  
+  kf2:
+    container_name: kf2
+    hostname: kf2
+    image: bitnami/kafka
+    networks:
+      local:
+        ipv4_address: 192.168.50.22
+    ports:
+      - 29093:9093
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: yes
+      KAFKA_CFG_NODE_ID: 2
+      KAFKA_CFG_PROCESS_ROLES: controller,broker
+      KAFKA_KRAFT_CLUSTER_ID: test
+      KAFKA_CFG_LISTENERS: INTERNAL://:9092,KF://:9093,CONTROLLER://kf2:9094
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,KF:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 1@kf1:9094,2@kf2:9094,3@kf3:9094
+      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INTERNAL
+    volumes:
+      - ./data/kf2:/bitnami/kafka/data
+
+  kf3:
+    container_name: kf3
+    hostname: kf3
+    image: bitnami/kafka
+    networks:
+      local:
+        ipv4_address: 192.168.50.23
+    ports:
+      - 39093:9093
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: yes
+      KAFKA_CFG_NODE_ID: 3
+      KAFKA_CFG_PROCESS_ROLES: controller,broker
+      KAFKA_KRAFT_CLUSTER_ID: test
+      KAFKA_CFG_LISTENERS: INTERNAL://:9092,KF://:9093,CONTROLLER://kf3:9094
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,KF:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 1@kf1:9094,2@kf2:9094,3@kf3:9094
+      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INTERNAL
+    volumes:
+      - ./data/kf3:/bitnami/kafka/data
+
+networks:
+  local:
+    external: true

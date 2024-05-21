@@ -50,6 +50,7 @@ services:
     volumes:
       - ./datalog/zk3:/datalog
 
+  # observer
   zk4:
     container_name: zk4
     image: zookeeper

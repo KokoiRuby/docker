@@ -1,0 +1,22 @@
+services:
+  etcd_proxy:
+    container_name: proxy
+    image: 'bitnami/etcd:latest'
+    command: "etcd --proxy on"
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_LISTEN_CLIENT_URLS=https://0.0.0.0:2379
+      - ETCD_INITIAL_CLUSTER=etcd0=https://192.168.30.10:2380,etcd1=https://192.168.30.11:2380,etcd2=https://192.168.30.12:2380
+      - ETCD_TRUSTED_CA_FILE=/opt/bitnami/etcd/certs/ca/ca.pem
+      - ETCD_LOG_LEVEL=info
+    networks:
+      local:
+        ipv4_address: 192.168.30.13
+    ports:
+      - 42379:2379
+    volumes:
+      - ./certs/ca:/opt/bitnami/etcd/certs/ca
+
+networks:
+  local:
+    external: true
