@@ -8,6 +8,11 @@ services:
       - ETCD_LISTEN_CLIENT_URLS=https://0.0.0.0:2379
       - ETCD_INITIAL_CLUSTER=etcd0=https://192.168.30.10:2380,etcd1=https://192.168.30.11:2380,etcd2=https://192.168.30.12:2380
       - ETCD_TRUSTED_CA_FILE=/opt/bitnami/etcd/certs/ca/ca.pem
+      - ETCD_CERT_FILE=/opt/bitnami/etcd/certs/proxy.pem
+      - ETCD_KEY_FILE=/opt/bitnami/etcd/certs/proxy-key.pem
+      - ETCD_PEER_TRUSTED_CA_FILE=/opt/bitnami/etcd/certs/ca/ca.pem
+      - ETCD_PEER_CERT_FILE=/opt/bitnami/etcd/certs/peer-proxy.pem
+      - ETCD_PEER_KEY_FILE=/opt/bitnami/etcd/certs/peer-proxy-key.pem
       - ETCD_LOG_LEVEL=info
     networks:
       local:
@@ -15,7 +20,9 @@ services:
     ports:
       - 42379:2379
     volumes:
+      - ./data/proxy:/opt/bitnami/etcd/data
       - ./certs/ca:/opt/bitnami/etcd/certs/ca
+      - ./certs/proxy:/opt/bitnami/etcd/certs
 
 networks:
   local:
