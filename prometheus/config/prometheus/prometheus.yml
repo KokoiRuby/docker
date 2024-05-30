@@ -39,3 +39,15 @@ scrape_configs:
   - job_name: "zookeeper"
     static_configs:
       - targets: ["192.168.50.11:7070","192.168.50.12:7070","192.168.50.13:7070","192.168.50.14:7070"]
+
+  # https://github.com/KokoiRuby/docker/tree/main/etcd
+  - job_name: "etcd"
+    scheme: "https"
+    static_configs:
+    - targets: ["192.168.30.10:2379","192.168.30.11:2379","192.168.30.12:2379"]
+    tls_config:
+      ca_file: "/prometheus/tls/etcd/ca.pem"
+      cert_file: "/prometheus/tls/etcd/192.168.30.10.pem"
+      key_file: "/prometheus/tls/etcd/192.168.30.10-key.pem"
+      insecure_skip_verify: false
+    

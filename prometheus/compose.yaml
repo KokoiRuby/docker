@@ -11,6 +11,7 @@ services:
     volumes:
       - ./config/prometheus:/etc/prometheus
       # - ./data/prometheus:/prometheus
+      - ./tls://prometheus/tls
     depends_on:
       - node-exporter
 
