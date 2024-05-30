@@ -7,14 +7,32 @@ services:
       local:
         ipv4_address: 192.168.50.11
     ports:
-      - 12181:2181
+      - 12281:2281
     environment:
       ZOO_MY_ID: 1
-      ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181 server.4=zk4:2888:3888:observer;2181
+      ZOO_SERVERS: |
+        server.1=zk1:2888:3888:participant
+        server.2=zk2:2888:3888:participant
+        server.3=zk3:2888:3888:participant
+        server.4=zk4:2888:3888:observer
       ZOO_4LW_COMMANDS_WHITELIST: "*"
-      ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7070"
+      ZOO_CFG_EXTRA: |
+        secureClientPort=2281
+        metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider
+        metricsProvider.httpPort=7070
+        sslQuorum=true
+        serverCnxnFactory=org.apache.zookeeper.server.NettyServerCnxnFactory
+        ssl.keyStore.location=/tls/zk1.jks
+        ssl.keyStore.password=password
+        ssl.trustStore.location=/tls/truststore.jks
+        ssl.trustStore.password=password
+        ssl.quorum.keyStore.location=/tls/zk1.jks
+        ssl.quorum.keyStore.password=password
+        ssl.quorum.trustStore.location=/tls/truststore.jks
+        ssl.quorum.trustStore.password=password
     volumes:
       - ./datalog/zk1:/datalog
+      - ./tls/zk1:/tls
 
   zk2:
     container_name: zk2
@@ -24,14 +42,32 @@ services:
       local:
         ipv4_address: 192.168.50.12
     ports:
-      - 22181:2181
+      - 22281:2281
     environment:
       ZOO_MY_ID: 2
-      ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=0.0.0.0:2888:3888;2181 server.3=zk3:2888:3888;2181 server.4=zk4:2888:3888:observer;2181
+      ZOO_SERVERS: |
+        server.1=zk1:2888:3888:participant
+        server.2=zk2:2888:3888:participant
+        server.3=zk3:2888:3888:participant
+        server.4=zk4:2888:3888:observer
       ZOO_4LW_COMMANDS_WHITELIST: "*"
-      ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7070"
+      ZOO_CFG_EXTRA: |
+        secureClientPort=2281
+        metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider
+        metricsProvider.httpPort=7070
+        sslQuorum=true
+        serverCnxnFactory=org.apache.zookeeper.server.NettyServerCnxnFactory
+        ssl.keyStore.location=/tls/zk2.jks
+        ssl.keyStore.password=password
+        ssl.trustStore.location=/tls/truststore.jks
+        ssl.trustStore.password=password
+        ssl.quorum.keyStore.location=/tls/zk2.jks
+        ssl.quorum.keyStore.password=password
+        ssl.quorum.trustStore.location=/tls/truststore.jks
+        ssl.quorum.trustStore.password=password
     volumes:
       - ./datalog/zk2:/datalog
+      - ./tls/zk2:/tls
 
   zk3:
     container_name: zk3
@@ -41,14 +77,32 @@ services:
       local:
         ipv4_address: 192.168.50.13
     ports:
-      - 32181:2181
+      - 32281:2281
     environment:
       ZOO_MY_ID: 3
-      ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=0.0.0.0:2888:3888;2181 server.4=zk4:2888:3888:observer;2181
+      ZOO_SERVERS: |
+        server.1=zk1:2888:3888:participant
+        server.2=zk2:2888:3888:participant
+        server.3=zk3:2888:3888:participant
+        server.4=zk4:2888:3888:observer
       ZOO_4LW_COMMANDS_WHITELIST: "*"
-      ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7070"
+      ZOO_CFG_EXTRA: |
+        secureClientPort=2281
+        metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider
+        metricsProvider.httpPort=7070
+        sslQuorum=true
+        serverCnxnFactory=org.apache.zookeeper.server.NettyServerCnxnFactory
+        ssl.keyStore.location=/tls/zk3.jks
+        ssl.keyStore.password=password
+        ssl.trustStore.location=/tls/truststore.jks
+        ssl.trustStore.password=password
+        ssl.quorum.keyStore.location=/tls/zk3.jks
+        ssl.quorum.keyStore.password=password
+        ssl.quorum.trustStore.location=/tls/truststore.jks
+        ssl.quorum.trustStore.password=password
     volumes:
       - ./datalog/zk3:/datalog
+      - ./tls/zk3:/tls
 
   # observer
   zk4:
@@ -59,14 +113,32 @@ services:
       local:
         ipv4_address: 192.168.50.14
     ports:
-      - 42181:2181
+      - 42281:2281
     environment:
       ZOO_MY_ID: 4
-      ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181 server.4=0.0.0.0:2888:3888:observer;2181
+      ZOO_SERVERS: |
+        server.1=zk1:2888:3888:participant
+        server.2=zk2:2888:3888:participant
+        server.3=zk3:2888:3888:participant
+        server.4=zk4:2888:3888:observer
       ZOO_4LW_COMMANDS_WHITELIST: "*"
-      ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7070"
+      ZOO_CFG_EXTRA: |
+        secureClientPort=2281
+        metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider
+        metricsProvider.httpPort=7070
+        sslQuorum=true
+        serverCnxnFactory=org.apache.zookeeper.server.NettyServerCnxnFactory
+        ssl.keyStore.location=/tls/zk4.jks
+        ssl.keyStore.password=password
+        ssl.trustStore.location=/tls/truststore.jks
+        ssl.trustStore.password=password
+        ssl.quorum.keyStore.location=/tls/zk4.jks
+        ssl.quorum.keyStore.password=password
+        ssl.quorum.trustStore.location=/tls/truststore.jks
+        ssl.quorum.trustStore.password=password
     volumes:
       - ./datalog/zk4:/datalog
+      - ./tls/zk4:/tls
 
 #  busybox:
 #    container_name: busybox
