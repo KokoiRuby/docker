@@ -24,12 +24,14 @@ rule_files:
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: "prometheus"
-
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
-
+    # scheme: "https"
     static_configs:
-      - targets: ["localhost:9090"]
+      - targets: ["192.168.40.10:9090"]
+    # tls_config:
+      # ca_file: "/prometheus/tls/etcd/ca.pem"
+      # cert_file: "/prometheus/tls/prometheus/192.168.40.10.crt"
+      # key_file: "/prometheus/tls/prometheus/192.168.40.10.key"
+      # insecure_skip_verify: false
 
   - job_name: "node_exporter"
     static_configs:

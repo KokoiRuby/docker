@@ -17,7 +17,10 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
    $ docker network create --subnet=192.168.0.0/16 local
    ```
 
-2. [TLS setup](https://www.prometheus.io/docs/guides/tls-encryption/) (Done for u)
+2. ~~TLS setup (Done for u)~~
+
+   - ~~[Prometheus](https://www.prometheus.io/docs/guides/tls-encryption/)~~
+   - ~~[Node-Exporter](https://github.com/prometheus/node_exporter?tab=readme-ov-file#tls-endpoint)~~
 
 3. Docker Compose Up
 
@@ -27,10 +30,10 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
 
 4. Verify
 
-   - https://localhost:19090/
+   - http://localhost:19090/
      - Status → Targets (see more in ./config/prometheus/prometheus.yml)
      - Alerts (see more in ./config/prometheus/rule_files/node-exporter.yml)
-   - https://localhost:19090/metrics
+   - http://localhost:19090/metrics
    - http://localhost:19100/metrics
    - http://localhost:13000
      - admin/admin
@@ -61,5 +64,12 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
 
    
 
-   
+   ```
+   openssl req \
+     -x509 \
+     -newkey rsa:4096 \
+     -nodes \
+     -keyout 192.168.40.11.key \
+     -out 192.168.40.11.crt
+   ```
 
