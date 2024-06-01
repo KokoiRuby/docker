@@ -17,23 +17,25 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
    $ docker network create --subnet=192.168.0.0/16 local
    ```
 
-2. Docker Compose Up
+2. [TLS setup](https://www.prometheus.io/docs/guides/tls-encryption/) (Done for u)
+
+3. Docker Compose Up
 
    ```bash
    $ docker compose up -d
    ```
 
-3. Verify
+4. Verify
 
-   - http://localhost:19090/
+   - https://localhost:19090/
      - Status → Targets (see more in ./config/prometheus/prometheus.yml)
      - Alerts (see more in ./config/prometheus/rule_files/node-exporter.yml)
-   - http://localhost:19090/metrics
+   - https://localhost:19090/metrics
    - http://localhost:19100/metrics
    - http://localhost:13000
      - admin/admin
 
-4. Setup SMTP (Optional, see more in ./config/alertmanager/alertmanager.yml)
+5. Setup SMTP (Optional, see more in ./config/alertmanager/alertmanager.yml)
 
    ```yaml
    # fill in
@@ -49,9 +51,9 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
        - to: '<ur_email_here>'
    ```
 
-5. Enjoy :smile:
+6. Enjoy :smile:
 
-6. (Clean up)
+7. (Clean up)
 
    ```bash
    $ docker compose stop
