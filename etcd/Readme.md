@@ -1,4 +1,4 @@
-A quickstart of deploying a [etcd](https://etcd.io/) cluster with [proxy](https://etcd.io/docs/v2.3/proxy/) using [Docker Compose](https://docs.docker.com/compose/) :whale2:
+A quickstart of deploying a [etcd](https://etcd.io/) cluster with [proxy](https://etcd.io/docs/v2.3/proxy/) in tls using [Docker Compose](https://docs.docker.com/compose/) :whale2:
 
 ## IP Plan
 
