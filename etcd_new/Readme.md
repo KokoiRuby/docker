@@ -1,4 +1,4 @@
-A quickstart of deploying a [etcd](https://etcd.io/) cluster using [Docker Compose](https://docs.docker.com/compose/) :whale2:
+A quickstart of deploying a [etcd](https://etcd.io/) cluster with [gRPC proxy](https://etcd.io/docs/v3.5/op-guide/grpc_proxy/) using [Docker Compose](https://docs.docker.com/compose/) :whale2:
 
 ## IP Plan
 
@@ -17,18 +17,19 @@ A quickstart of deploying a [etcd](https://etcd.io/) cluster using [Docker Compo
    $ docker network create --subnet=192.168.0.0/16 local
    ```
 
-3. Docker Compose Up
+2. Docker Compose Up
 
    ```bash
    $ docker compose up
+   $ docker compose up -d
    ```
 
 4. Verify
 
    ```bash
-   $ docker exec etcd0 etcdctl \
-   --endpoints http://etcd0:2379,http://etcd1:2379,http://etcd2:2379 \
-   member list
+   $ docker exec proxy etcdctl \
+       --endpoints http://etcd0:2379,http://etcd1:2379,http://etcd2:2379 \
+       member list
    ```
    
 8. (Clean up)
