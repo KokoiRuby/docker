@@ -20,7 +20,6 @@ A quickstart of deploying a [etcd](https://etcd.io/) cluster with [gRPC proxy](h
 2. Docker Compose Up
 
    ```bash
-   $ docker compose up
    $ docker compose up -d
    ```
 
@@ -38,7 +37,44 @@ A quickstart of deploying a [etcd](https://etcd.io/) cluster with [gRPC proxy](h
    $ docker compose down
    ```
    
-   
-   
-   
 
+## TLS
+
+1. Create network
+
+   ```bash
+   $ docker network create --subnet=192.168.0.0/16 local
+   ```
+
+2. Install [cfssl](https://github.com/cloudflare/cfssl)
+
+3. Create keypair
+
+   ```bash
+   $ cd tls/ && make all
+   ```
+
+4. Docker Compose up
+
+   ```bash
+   $ docker compose -f compose-tls.yaml up
+   ```
+
+5. Verify
+
+   ```bash
+   $ docker exec proxy etcdctl \
+       --endpoints https://etcd0:2379,https://etcd1:2379,https://etcd2:2379 \
+       --cert /opt/bitnami/etcd/conf/certs/proxy.pem \
+       --key /opt/bitnami/etcd/conf/certs/proxy-key.pem \
+       --cacert /opt/bitnami/etcd/conf/certs/ca.pem \
+       member list
+   ```
+
+6. (Clean up)
+
+   ```bash
+   $ docker compose -f compose-tls.yaml down
+   ```
+
+   

@@ -1,0 +1,126 @@
+services:
+  etcd0:
+    container_name: etcd0
+    # https://hub.docker.com/r/bitnami/etcd/
+    image: 'bitnami/etcd:latest'
+    # https://etcd.io/docs/v3.4/op-guide/configuration/
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_NAME=etcd0
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=https://etcd0:2380
+      - ETCD_ADVERTISE_CLIENT_URLS=https://etcd0:2379
+      - ETCD_LISTEN_PEER_URLS=https://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=https://0.0.0.0:2379
+      - ETCD_INITIAL_CLUSTER=etcd0=https://etcd0:2380,etcd1=https://etcd1:2380,etcd2=https://etcd2:2380
+      - ETCD_INITIAL_CLUSTER_TOKEN=token
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_LOG_LEVEL=info
+      - ETCD_ACTIVE_ENDPOINTS=etcd1=https://etcd1:2380,etcd2=https://etcd2:2380
+      # mtls
+      - "ETCD_CLIENT_CERT_AUTH=true"
+      - "ETCD_PEER_CLIENT_CERT_AUTH=true"
+      - "ETCD_TRUSTED_CA_FILE=/opt/bitnami/etcd/conf/certs/ca.pem"
+      - "ETCD_KEY_FILE=/opt/bitnami/etcd/conf/certs/server-key.pem"
+      - "ETCD_CERT_FILE=/opt/bitnami/etcd/conf/certs/server.pem"
+      - "ETCD_PEER_TRUSTED_CA_FILE=/opt/bitnami/etcd/conf/certs/ca.pem"
+      - "ETCD_PEER_KEY_FILE=/opt/bitnami/etcd/conf/certs/peer-key.pem"
+      - "ETCD_PEER_CERT_FILE=/opt/bitnami/etcd/conf/certs/peer.pem"
+
+    networks:
+      local:
+        ipv4_address: 192.168.30.10
+    ports:
+      - 12379:2379
+      - 12380:2380
+    volumes:
+      - ./data/etcd0:/opt/bitnami/etcd/data
+      - ./tls/certs:/opt/bitnami/etcd/conf/certs
+
+  etcd1:
+    container_name: etcd1
+    # https://hub.docker.com/r/bitnami/etcd/
+    image: 'bitnami/etcd:latest'
+    # https://etcd.io/docs/v3.4/op-guide/configuration/
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_NAME=etcd1
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=https://etcd1:2380
+      - ETCD_ADVERTISE_CLIENT_URLS=https://etcd1:2379
+      - ETCD_LISTEN_PEER_URLS=https://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=https://0.0.0.0:2379
+      - ETCD_INITIAL_CLUSTER=etcd0=https://etcd0:2380,etcd1=https://etcd1:2380,etcd2=https://etcd2:2380
+      - ETCD_INITIAL_CLUSTER_TOKEN=token
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_LOG_LEVEL=info
+      - ETCD_ACTIVE_ENDPOINTS=etcd0=https://etcd0:2380,etcd2=https://etcd2:2380
+      # mtls
+      - "ETCD_CLIENT_CERT_AUTH=true"
+      - "ETCD_PEER_CLIENT_CERT_AUTH=true"
+      - "ETCD_TRUSTED_CA_FILE=/opt/bitnami/etcd/conf/certs/ca.pem"
+      - "ETCD_KEY_FILE=/opt/bitnami/etcd/conf/certs/server-key.pem"
+      - "ETCD_CERT_FILE=/opt/bitnami/etcd/conf/certs/server.pem"
+      - "ETCD_PEER_TRUSTED_CA_FILE=/opt/bitnami/etcd/conf/certs/ca.pem"
+      - "ETCD_PEER_KEY_FILE=/opt/bitnami/etcd/conf/certs/peer-key.pem"
+      - "ETCD_PEER_CERT_FILE=/opt/bitnami/etcd/conf/certs/peer.pem"
+    networks:
+      local:
+        ipv4_address: 192.168.30.11
+    ports:
+      - 22379:2379
+      - 22380:2380
+    volumes:
+      - ./data/etcd1:/opt/bitnami/etcd/data
+      - ./tls/certs:/opt/bitnami/etcd/conf/certs
+
+  etcd2:
+    container_name: etcd2
+    # https://hub.docker.com/r/bitnami/etcd/
+    image: 'bitnami/etcd:latest'
+    # https://etcd.io/docs/v3.4/op-guide/configuration/
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_NAME=etcd2
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=https://etcd2:2380
+      - ETCD_ADVERTISE_CLIENT_URLS=https://etcd2:2379
+      - ETCD_LISTEN_PEER_URLS=https://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=https://0.0.0.0:2379
+      - ETCD_INITIAL_CLUSTER=etcd0=https://etcd0:2380,etcd1=https://etcd1:2380,etcd2=https://etcd2:2380
+      - ETCD_INITIAL_CLUSTER_TOKEN=token
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_LOG_LEVEL=info
+      - ETCD_ACTIVE_ENDPOINTS=etcd10=https://etcd0:2380,etcd1=https://etcd1:2380
+      # mtls
+      - "ETCD_CLIENT_CERT_AUTH=true"
+      - "ETCD_PEER_CLIENT_CERT_AUTH=true"
+      - "ETCD_TRUSTED_CA_FILE=/opt/bitnami/etcd/conf/certs/ca.pem"
+      - "ETCD_KEY_FILE=/opt/bitnami/etcd/conf/certs/server-key.pem"
+      - "ETCD_CERT_FILE=/opt/bitnami/etcd/conf/certs/server.pem"
+      - "ETCD_PEER_TRUSTED_CA_FILE=/opt/bitnami/etcd/conf/certs/ca.pem"
+      - "ETCD_PEER_KEY_FILE=/opt/bitnami/etcd/conf/certs/peer-key.pem"
+      - "ETCD_PEER_CERT_FILE=/opt/bitnami/etcd/conf/certs/peer.pem"
+    networks:
+      local:
+        ipv4_address: 192.168.30.12
+    ports:
+      - 32379:2379
+      - 32380:2380
+    volumes:
+      - ./data/etcd2:/opt/bitnami/etcd/data
+      - ./tls/certs:/opt/bitnami/etcd/conf/certs
+  
+  # https://etcd.io/docs/v3.5/op-guide/grpc_proxy/
+  proxy:
+    image: bitnami/etcd:latest
+    container_name: proxy
+    command: 'etcd grpc-proxy start --endpoints=etcd0:2379,etcd1:2379,etcd2:2379 --listen-addr=proxy:2379  --advertise-client-url=proxy:2379  --cacert=/opt/bitnami/etcd/conf/certs/ca.pem --cert=/opt/bitnami/etcd/conf/certs/proxy.pem --key=/opt/bitnami/etcd/conf/certs/proxy-key.pem  --resolver-prefix="___grpc_proxy_endpoint" --resolver-ttl=60'
+    networks:
+      local:
+        ipv4_address: 192.168.30.13
+    ports:
+      - 43793:2379
+    volumes:
+      - ./tls/certs:/opt/bitnami/etcd/conf/certs
+  
+networks:
+  local:
+    external: true
