@@ -62,14 +62,4 @@ A quickstart of deploying a [Prometheus](https://prometheus.io/) + [Node-Exporte
    $ docker compose stop
    ```
 
-   
-
-   ```
-   openssl req \
-     -x509 \
-     -newkey rsa:4096 \
-     -nodes \
-     -keyout 192.168.40.11.key \
-     -out 192.168.40.11.crt
-   ```
 

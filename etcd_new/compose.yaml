@@ -1,0 +1,82 @@
+services:
+  etcd0:
+    container_name: etcd0
+    # https://hub.docker.com/r/bitnami/etcd/
+    image: 'bitnami/etcd:latest'
+    # https://etcd.io/docs/v3.4/op-guide/configuration/
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_NAME=etcd0
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd0:2380
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd0:2379
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_INITIAL_CLUSTER=etcd0=http://etcd0:2380,etcd1=http://etcd1:2380,etcd2=http://etcd2:2380
+      - ETCD_INITIAL_CLUSTER_TOKEN=token
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_LOG_LEVEL=info
+      - ETCD_ACTIVE_ENDPOINTS=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380
+    networks:
+      local:
+        ipv4_address: 192.168.30.10
+    ports:
+      - 12379:2379
+      - 12380:2380
+    volumes:
+      - ./data/etcd0:/opt/bitnami/etcd/data
+
+  etcd1:
+    container_name: etcd1
+    # https://hub.docker.com/r/bitnami/etcd/
+    image: 'bitnami/etcd:latest'
+    # https://etcd.io/docs/v3.4/op-guide/configuration/
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_NAME=etcd1
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd1:2380
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd1:2379
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_INITIAL_CLUSTER=etcd0=http://etcd0:2380,etcd1=http://etcd1:2380,etcd2=http://etcd2:2380
+      - ETCD_INITIAL_CLUSTER_TOKEN=token
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_LOG_LEVEL=info
+      - ETCD_ACTIVE_ENDPOINTS=etcd0=http://etcd0:2380,etcd2=http://etcd2:2380
+    networks:
+      local:
+        ipv4_address: 192.168.30.11
+    ports:
+      - 22379:2379
+      - 22380:2380
+    volumes:
+      - ./data/etcd1:/opt/bitnami/etcd/data
+
+  etcd2:
+    container_name: etcd2
+    # https://hub.docker.com/r/bitnami/etcd/
+    image: 'bitnami/etcd:latest'
+    # https://etcd.io/docs/v3.4/op-guide/configuration/
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_NAME=etcd2
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd2:2380
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd2:2379
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_INITIAL_CLUSTER=etcd0=http://etcd0:2380,etcd1=http://etcd1:2380,etcd2=http://etcd2:2380
+      - ETCD_INITIAL_CLUSTER_TOKEN=token
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_LOG_LEVEL=info
+      - ETCD_ACTIVE_ENDPOINTS=etcd10=http://etcd0:2380,etcd1=http://etcd1:2380
+    networks:
+      local:
+        ipv4_address: 192.168.30.12
+    ports:
+      - 32379:2379
+      - 32380:2380
+    volumes:
+      - ./data/etcd2:/opt/bitnami/etcd/data
+    
+networks:
+  local:
+    external: true

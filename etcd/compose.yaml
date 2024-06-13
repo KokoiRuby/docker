@@ -24,8 +24,8 @@ services:
       local:
         ipv4_address: 192.168.30.10
     ports:
-      - 12379:2379
-      - 12380:2380
+      - 22379:2379
+      - 22380:2380
     volumes:
       - ./data/etcd0:/opt/bitnami/etcd/data
       - ./certs/ca:/opt/bitnami/etcd/certs/ca
@@ -56,8 +56,8 @@ services:
       local:
         ipv4_address: 192.168.30.11
     ports:
-      - 22379:2379
-      - 22380:2380
+      - 32379:2379
+      - 32380:2380
     volumes:
       - ./data/etcd1:/opt/bitnami/etcd/data
       - ./certs/ca:/opt/bitnami/etcd/certs/ca
@@ -88,8 +88,8 @@ services:
       local:
         ipv4_address: 192.168.30.12
     ports:
-      - 32379:2379
-      - 32380:2380
+      - 42379:2379
+      - 42380:2380
     volumes:
       - ./data/etcd2:/opt/bitnami/etcd/data
       - ./certs/ca:/opt/bitnami/etcd/certs/ca

@@ -2,11 +2,9 @@ services:
   etcd_proxy:
     container_name: proxy
     image: 'bitnami/etcd:latest'
-    command: "etcd --proxy on"
+    command: "etcd grpc-proxy start --listen-addr=127.0.0.1:2379 --endpoints=https://192.168.30.10:2379,https://192.168.30.11:2379,https://192.168.30.12:2379 --cert /opt/bitnami/etcd/certs/proxy.pem --key /opt/bitnami/etcd/certs/proxy-key.pem --cacert=/opt/bitnami/etcd/certs/ca/ca.pem"
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
-      - ETCD_LISTEN_CLIENT_URLS=https://0.0.0.0:2379
-      - ETCD_INITIAL_CLUSTER=etcd0=https://192.168.30.10:2380,etcd1=https://192.168.30.11:2380,etcd2=https://192.168.30.12:2380
       - ETCD_TRUSTED_CA_FILE=/opt/bitnami/etcd/certs/ca/ca.pem
       - ETCD_CERT_FILE=/opt/bitnami/etcd/certs/proxy.pem
       - ETCD_KEY_FILE=/opt/bitnami/etcd/certs/proxy-key.pem
@@ -18,7 +16,7 @@ services:
       local:
         ipv4_address: 192.168.30.13
     ports:
-      - 42379:2379
+      - 52379:2379
     volumes:
       - ./data/proxy:/opt/bitnami/etcd/data
       - ./certs/ca:/opt/bitnami/etcd/certs/ca
