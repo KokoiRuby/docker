@@ -11,7 +11,7 @@ A quickstart of deploying a [etcd](https://etcd.io/) cluster with [gRPC proxy](h
 
 ## Steps
 
-2. Create network
+1. Create network
 
    ```bash
    $ docker network create --subnet=192.168.0.0/16 local
@@ -23,7 +23,7 @@ A quickstart of deploying a [etcd](https://etcd.io/) cluster with [gRPC proxy](h
    $ docker compose up -d
    ```
 
-4. Verify
+3. Verify
 
    ```bash
    $ docker exec proxy etcdctl \
@@ -31,7 +31,7 @@ A quickstart of deploying a [etcd](https://etcd.io/) cluster with [gRPC proxy](h
        member list
    ```
    
-8. (Clean up)
+4. (Clean up)
 
    ```bash
    $ docker compose down

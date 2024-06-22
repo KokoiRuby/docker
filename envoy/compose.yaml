@@ -1,0 +1,48 @@
+services:
+  front-proxy:
+    container_name: envoy
+    # https://hub.docker.com/r/envoyproxy/envoy
+    image: 'envoyproxy/envoy:v1.30-latest'
+    networks:
+      local:
+        ipv4_address: 192.168.60.10
+    ports:
+      - 18000:8000
+      - 18001:8001
+    volumes:
+      - ./config/envoy.yaml:/etc/envoy/envoy.yaml
+  
+  service_blue:
+    container_name: blue
+    image: gcr.io/tetratelabs/color-app:1.0.0
+    environment:
+      - BG_COLOR=blue
+    networks:
+      local:
+        ipv4_address: 192.168.70.10
+    ports:
+      - 13000:3000
+  service_green:
+    container_name: green
+    image: gcr.io/tetratelabs/color-app:1.0.0
+    environment:
+      - BG_COLOR=green
+    networks:
+      local:
+        ipv4_address: 192.168.70.20
+    ports:
+      - 23000:3000
+  service_red:
+    container_name: red
+    image: gcr.io/tetratelabs/color-app:1.0.0
+    environment:
+      - BG_COLOR=red
+    networks:
+      local:
+        ipv4_address: 192.168.70.30
+    ports:
+      - 33000:3000
+  
+networks:
+  local:
+    external: true
